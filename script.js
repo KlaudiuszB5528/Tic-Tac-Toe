@@ -64,7 +64,7 @@ const Game = (() => {
     setBoardCell(player2.sign, randomIndex);
   };
 
-  const hardMove = () => {
+  const impossibleMove = () => {
     let cellIndex = minimax(board, player2).index;
     board.setCell(player2.sign, cellIndex);
     setBoardCell(player2.sign, cellIndex);
@@ -72,8 +72,13 @@ const Game = (() => {
 
   const mediumMove = () => {
     let value = Math.floor(Math.random() * (100 + 1));
-    console.log(value);
-    if (value > 50) hardMove();
+    if (value > 50) impossibleMove();
+    else easyMove();
+  };
+
+  const hardMove = () => {
+    let value = Math.floor(Math.random() * (100 + 1));
+    if (value > 25) impossibleMove();
     else easyMove();
   };
 
@@ -88,6 +93,9 @@ const Game = (() => {
         break;
       case "Hard":
         hardMove();
+        break;
+      case "Impossible":
+        impossibleMove();
         break;
     }
   };
@@ -120,7 +128,7 @@ const Game = (() => {
       board.setCell(player1.sign, cellIndex);
       e.target.textContent = player1.sign;
       endGameVsAI();
-      move();
+      if (!isGameOver(board)) move();
       endGameVsAI();
     }
   };
@@ -188,7 +196,7 @@ const Game = (() => {
 
   const minimax = (newBoard, player) => {
     let availCells = newBoard.availableCells();
-    if (availCells.length == 0) return { score: 0 };
+    if (isTie(newBoard)) return { score: 0 };
     else if (isGameOver(newBoard)) {
       if (player == player1) return { score: 10 };
       if (player == player2) return { score: -10 };
