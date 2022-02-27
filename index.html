@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400;700&family=Roboto:wght@100;300&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/f9753df0df.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Tic-Tac-Toe</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <i class="fa-regular fa-circle"></i>
+        <h1 class="title">Tic-Tac-Toe</h1>
+        <i class="fa-solid fa-x"></i>
+      </header>
+      <main>
+        <div class="main-content">
+          <div data-index="0" class="cell"></div>
+          <div data-index="1" class="cell"></div>
+          <div data-index="2" class="cell"></div>
+          <div data-index="3" class="cell"></div>
+          <div data-index="4" class="cell"></div>
+          <div data-index="5" class="cell"></div>
+          <div data-index="6" class="cell"></div>
+          <div data-index="7" class="cell"></div>
+          <div data-index="8" class="cell"></div>
+        </div>
+      </main>
+      <footer>
+        Copyright &copy
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        Klaudiusz Biegacz
+        <a href="https://github.com/KlaudiuszB5528" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      </footer>
+      <div id="end-game-modal">
+        <span class="message"></span>
+        <button id="restart">Play Again</button>
+      </div>
+      <div id="game-start-modal" class="active">
+        <span>Choose Your Enemy!</span>
+        <button id="vsPlayer">Human</button>
+        <button id="vsAI">AI</button>
+        <div class="select">
+          <label for="difficulty">Game difficulty</label>
+          <select name="difficulty" id="difficulty">
+            <option value="Easy" selected>Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Impossible">Impossible</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div id="overlay" class="active"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
