@@ -230,7 +230,7 @@ const Game = (() => {
       classListAdd(endGameModal);
       board.winner == "X"
         ? (message.textContent = "You win!")
-        : (message.textContent = "Computer wins!");
+        : (message.textContent = "The AI wins!");
     }
   };
 
