@@ -64,7 +64,7 @@ const Game = (() => {
     setBoardCell(player2.sign, randomIndex);
   };
 
-  const impossibleMove = () => {
+  const hardMove = () => {
     let cellIndex = minimax(board, player2).index;
     board.setCell(player2.sign, cellIndex);
     setBoardCell(player2.sign, cellIndex);
@@ -73,7 +73,7 @@ const Game = (() => {
   const mediumMove = () => {
     let value = Math.floor(Math.random() * (100 + 1));
     console.log(value);
-    if (value > 50) impossibleMove();
+    if (value > 50) hardMove();
     else easyMove();
   };
 
@@ -86,8 +86,8 @@ const Game = (() => {
       case "Medium":
         mediumMove();
         break;
-      case "Impossible":
-        impossibleMove();
+      case "Hard":
+        hardMove();
         break;
     }
   };
@@ -213,16 +213,6 @@ const Game = (() => {
     return findBestMove(moves, player);
   };
 
-  const clear = () => {
-    currentPlayer = player1;
-    board.resetBoard();
-    cells.forEach((cell) => {
-      cell.removeEventListener("click", handleClickVsAI);
-      cell.removeEventListener("click", handleClickVsPlayer);
-      cell.textContent = "";
-    });
-  };
-
   const endGameVsAI = () => {
     if (isTie(board)) {
       classListAdd(endGameModal);
@@ -247,6 +237,16 @@ const Game = (() => {
         ? (message.textContent = "Player 1 wins!")
         : (message.textContent = "Player 2 wins!");
     }
+  };
+
+  const clear = () => {
+    currentPlayer = player1;
+    board.resetBoard();
+    cells.forEach((cell) => {
+      cell.removeEventListener("click", handleClickVsAI);
+      cell.removeEventListener("click", handleClickVsPlayer);
+      cell.textContent = "";
+    });
   };
 
   const classListAdd = (modal) => {
